@@ -1,4 +1,4 @@
-group 'com.ciklum.workshop'
+group 'com.ciklum.tests.workshop'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
@@ -11,4 +11,6 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.0.1'
+    compile group: 'org.testng', name: 'testng', version: '6.9.13.6'
 }

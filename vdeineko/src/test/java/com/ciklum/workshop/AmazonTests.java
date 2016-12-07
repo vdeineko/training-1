@@ -8,24 +8,20 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-
 import static org.junit.Assert.assertEquals;
 
 public class AmazonTests {
 
     static WebDriver driver;
 
-
     public void searchProduct(String product){
         driver.findElement(By.id("twotabsearchtextbox")).sendKeys(product);
         driver.findElement(By.xpath(".//*[@id='nav-search']/form/div[2]/div/input")).click();
     }
 
-    public void verifyResults(int expectedNumber, List<WebElement> results){
+    public void verifyResultsNumber(int expectedNumber, List<WebElement> results){
         assertEquals("number of search results is not correct", expectedNumber, results.size());
     }
 
@@ -44,11 +40,11 @@ public class AmazonTests {
     }
 
     @Test
-    public void testCountOvens() throws InterruptedException {
+    public void testCountResults() throws InterruptedException {
         Thread.sleep(10000);
         List<WebElement> results = driver.findElements(By.xpath(".//*[@id='s-results-list-atf']/li"));
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        verifyResults(28, results);
+        verifyResultsNumber(28, results);
     }
 
     @Test
@@ -76,5 +72,4 @@ public class AmazonTests {
       public static void setDown(){
           driver.quit();
       }
-
 }

@@ -9,8 +9,33 @@ repositories {
     mavenCentral()
 }
 
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "ru.d10xa:gradle-allure-plugin:0.5.5"
+    }
+}
+
+apply plugin: 'ru.d10xa.allure'
+
+allure {
+    aspectjweaver = true
+
+    // Choose your test framework.
+    junit = true
+    testNG = false
+    spock = false
+
+}
+
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.0.1'
     testCompile group: 'org.testng', name: 'testng', version: '6.9.13.6'
+    compile group: 'com.codeborne', name: 'selenide', version: '4.2'
 }
+
+tasks.withType(Test)*.finalizedBy allureReport
